@@ -1,47 +1,20 @@
 <template>
-  <h1>{{ title }}</h1>
-  <div v-if="showModal">
-    <Modal @close="toggleModal">
-      <template v-slot:links>
-        <a href="">sign up now</a>
-        <a href="">more info</a>
-      </template>
-      <h1>Ninja Givaway!</h1>
-      <p>Grab your ninja swag for half price!</p>
-    </Modal>
-  </div>
-  <div v-if="showModalTwo">
-    <Modal @close="toggleModalTwo">
-      <h1>Sign up to the newsletter</h1>
-      <p>For updates and promo codes!</p>
-    </Modal>
-  </div>
-  <button @click="toggleModal">open modal</button> 
-  <button @click="toggleModalTwo">open modal</button> 
+  <SignupForm />
 </template>
 
 <script>
-import Modal from './components/Modal'
+import SignupForm from './components/SignupForm'
 
 export default {
   name: 'App',
-  components: { Modal },
+  components: { SignupForm },
   data() {
     return {
-      title: 'My first Vue app',
-      header: 'sign up for giveaway',
-      text: 'half price',
-      showModal: false,
-      showModalTwo: false
+      
     }
   },
   methods: {
-    toggleModal() {
-      this.showModal = !this.showModal
-    },
-    toggleModalTwo() {
-      this.showModalTwo = !this.showModalTwo
-    }
+    
   } 
 }
 </script>
@@ -54,5 +27,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+body {
+  background: #eee;
+  margin: 0;
 }
 </style>
