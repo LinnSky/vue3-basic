@@ -1,48 +1,33 @@
 <template>
-  <h1>{{ title }}</h1>
-  <div v-if="showModal">
-    <Modal @close="toggleModal">
-      <template v-slot:links>
-        <a href="">sign up now</a>
-        <a href="">more info</a>
-      </template>
-      <h1>Ninja Givaway!</h1>
-      <p>Grab your ninja swag for half price!</p>
-    </Modal>
+  <div id="nav">
+    <router-link to="/">Home</router-link> |
+    <router-link :to="{name: 'About'}">About</router-link>
+    <router-link :to="{name: 'Jobs'}">Jobs</router-link>
   </div>
-  <div v-if="showModalTwo">
-    <Modal @close="toggleModalTwo">
-      <h1>Sign up to the newsletter</h1>
-      <p>For updates and promo codes!</p>
-    </Modal>
-  </div>
-  <button @click="toggleModal">open modal</button> 
-  <button @click="toggleModalTwo">open modal</button> 
+
+  <button @click="redirect">Redirect</button>
+  <button @click="back">Go Back</button>
+  <button @click="forward">Go Forward</button>
+
+  <router-view />
 </template>
 
 <script>
-import Modal from './components/Modal'
 
 export default {
   name: 'App',
-  components: { Modal },
-  data() {
-    return {
-      title: 'My first Vue app',
-      header: 'sign up for giveaway',
-      text: 'half price',
-      showModal: false,
-      showModalTwo: false
-    }
-  },
+  components: { },
   methods: {
-    toggleModal() {
-      this.showModal = !this.showModal
+    redirect() {
+      this.$router.push({name: 'Home'})
     },
-    toggleModalTwo() {
-      this.showModalTwo = !this.showModalTwo
+    back() {
+      this.$router.go(-1)
+    },
+    forward() {
+      this.$router.go(1)
     }
-  } 
+  }
 }
 </script>
 
@@ -53,6 +38,29 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+}
+
+#nav {
+  padding: 30px;
+}
+
+#nav a {
+  font-weight: bold;
+  color: #2c3e50;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+#nav a.router-link-exact-active {
+  color: white;
+  background: crimson;
+}
+
+button {
+  margin: 0 10px;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
 }
 </style>
